@@ -1,7 +1,7 @@
 import React from 'react'
 import './inputSection.css'
 
-export default function InputSection() {
+export default function InputSection({onInputChange, onButtonClick}) {
   return (
     <div>
         <p>
@@ -9,8 +9,8 @@ export default function InputSection() {
         </p>
         <div className='center'>
           <div className='inputSection center'>
-              <input placeholder="Enter Image URL Here" type="text" />
-              <button>Detect</button>
+              <input onChange={onInputChange} placeholder="Enter Image URL Here" type="text" />
+              <button onClick={onButtonClick}>Detect</button>
           </div>
         </div>
     </div>
