@@ -1,0 +1,21 @@
+.inputSection{
+    width: 700px;
+    box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.4);
+    padding: 30px 40px;
+    border-radius: 5px;
+}
+
+.inputSection input{
+    padding: 10px 10px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.inputSection input:focus{
+    outline: 0;
+}
+
+.inputSection button{
+    background-color: lightgreen;
+    border: 1px solid black;
+}

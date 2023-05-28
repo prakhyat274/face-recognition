@@ -1,0 +1,9 @@
+.navigation{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navigation p{
+    text-decoration: underline;
+    cursor: pointer;
+}
