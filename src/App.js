@@ -11,18 +11,25 @@ function App() {
 
   const[input,setInput] = useState('')
   const[imageURL,setImageURL] = useState('')
-  const[box, setBox] = useState({})
+  const[box, setBox] = useState([])
 
-  const handleValues = async(data) =>{
+  const handleArray = (arr) =>{
     const img = document.getElementById('inputimage')
     const imgWidth = Number(img.width)
     const imgHeight = Number(img.height)
-    setBox({
-      top: data.top_row * imgHeight,
-      bottom: imgHeight - (data.bottom_row * imgHeight),
-      left: data.left_col * imgWidth,
-      right: imgWidth - (data.right_col * imgWidth)
-    })
+    const boundingBoxArray = arr.map(obj=>{
+      return {
+        top: obj.region_info.bounding_box.top_row * imgHeight,
+        bottom: imgHeight - (obj.region_info.bounding_box.bottom_row * imgHeight),
+        left: obj.region_info.bounding_box.left_col * imgWidth,
+        right: imgWidth - (obj.region_info.bounding_box.right_col * imgWidth)
+      }}
+    )
+    handleValues(boundingBoxArray)
+  }
+
+  const handleValues = async(data) =>{
+    setBox(data)
   }
   
   const onInputChange = (event) =>{
@@ -68,7 +75,7 @@ function App() {
 
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/outputs", requestOptions)
         .then(response => response.json())
-        .then(result => handleValues(result.outputs[0].data.regions[0].region_info.bounding_box))
+        .then(result => handleArray(result.outputs[0].data.regions))
         .catch(error => console.log('error', error));
   }
 
