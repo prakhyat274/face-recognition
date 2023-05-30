@@ -1,0 +1,28 @@
+.form{
+    width: 50%;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.192);
+}
+.formInput{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px;
+}
+.formInput input{
+    padding: 10px 10px;
+    width: 90%;
+}
+.formInput input:focus{
+    outline: none;
+}
+.formbutton{
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;    
+    transition: 0.3s;
+}
+.formbutton:hover{
+    background-color: rgba(0, 0, 0, 0.089);
+}

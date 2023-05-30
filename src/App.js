@@ -6,13 +6,19 @@ import InputSection from './components/InputSection/InputSection';
 import ImgRecognition from './components/ImgRecognition/ImgRecognition';
 import ParticlesBg from 'particles-bg'
 import { useState } from 'react';
+import Signin from './components/Signin/Signin';
+import Register from './components/Register/Register';
 
 function App() {
 
   const[input,setInput] = useState('')
   const[imageURL,setImageURL] = useState('')
   const[box, setBox] = useState([])
+  const[route,setRoute] = useState('signin')
 
+  const changeRoute = (route) =>{
+    setRoute(route)
+  }
   const handleArray = (arr) =>{
     const img = document.getElementById('inputimage')
     const imgWidth = Number(img.width)
@@ -81,11 +87,21 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation/>
-      <Logo/>
-      <Rank/>
-      <InputSection onInputChange={onInputChange} onButtonClick={onButtonClick}/>
-      <ImgRecognition box={box}imageURL={imageURL}/>
+      <Navigation changeRoute={changeRoute}/>
+      {
+        route === "home"
+        ?<div>
+          <Logo/>
+          <Rank/>
+          <InputSection onInputChange={onInputChange} onButtonClick={onButtonClick}/>
+          <ImgRecognition box={box}imageURL={imageURL}/>
+        </div>
+        :(
+          route === "signin"
+          ?<Signin changeRoute={changeRoute}/>
+          :<Register changeRoute={changeRoute}/>
+        )
+      }
       <ParticlesBg type="cobweb" bg={true} />
     </div>
   );

@@ -1,10 +1,10 @@
 import React from 'react'
 import './navigation.css'
 
-export default function Navigation() {
+export default function Navigation(props) {
   return (
     <div className='navigation'>
-        <p>Sign Out</p>
+        <p onClick={()=>props.changeRoute("signin")}>Sign Out</p>
     </div>
   )
 }
